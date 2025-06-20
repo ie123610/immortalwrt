@@ -58,7 +58,6 @@
 
 	gpio-export {
 		compatible = "gpio-export";
-		#size-cells = <0>;
 
 		4g1-pwr {
 			gpio-export,name = "4g1-pwr";
@@ -70,12 +69,6 @@
 			gpio-export,name = "4g2-pwr";
 			gpio-export,output = <1>;
 			gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
-		};
-
-		ext-usb {
-			gpio-export,name = "ext-usb";
-			gpio-export,output = <1>;
-			gpios = <&gpio 6 GPIO_ACTIVE_LOW>;
 		};
 	};
 };
@@ -188,6 +181,12 @@
 
 &ethphy4 {
 	/delete-property/ interrupts;
+};
+
+&reg_vbus {
+	/delete-property/ regulator-always-on;
+	gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
+	enable-active-high;
 };
 
 &switch0 {

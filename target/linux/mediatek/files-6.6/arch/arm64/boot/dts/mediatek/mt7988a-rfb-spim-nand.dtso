@@ -13,6 +13,8 @@
 	fragment@0 {
 		target = <&spi0>;
 		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&spi0_flash_pins>;
 			status = "okay";
@@ -44,14 +46,14 @@
 							ubi-volume-ubootenv {
 								volname = "ubootenv";
 								nvmem-layout {
-									compatible = "u-boot,env-redundant-bool-layout";
+									compatible = "u-boot,env-redundant-bool";
 								};
 							};
 
 							ubi-volume-ubootenv2 {
 								volname = "ubootenv2";
 								nvmem-layout {
-									compatible = "u-boot,env-redundant-bool-layout";
+									compatible = "u-boot,env-redundant-bool";
 								};
 							};
 

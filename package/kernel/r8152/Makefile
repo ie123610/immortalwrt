@@ -8,12 +8,12 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=r8152
-PKG_VERSION:=2.18.1.20240701
+PKG_VERSION:=2.19.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/wget/realtek-r8152-linux/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=fe6fa8ccd849a8c2d4cb9325bed4bc0cdf773cfc8d2d950589e792d2ac507947
+PKG_HASH:=03f9a558ebf90d7cd121150f942395be4b96a5d11059fd0d0517db2574731189
 PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/realtek-$(PKG_NAME)-linux-$(PKG_VERSION)
 
 PKG_LICENSE:=GPL-2.0-only
@@ -24,10 +24,10 @@ include $(INCLUDE_DIR)/package.mk
 define KernelPackage/usb-net-rtl8152-vendor
   TITLE:=Kernel module for USB-to-Ethernet Realtek convertors
   SUBMENU:=USB Support
-  DEPENDS:=+kmod-usb-net
+  DEPENDS:=+kmod-usb-core +!LINUX_6_6:kmod-libphy
   CONFLICTS:=kmod-usb-net-rtl8152
-  FILES:= $(PKG_BUILD_DIR)/r8152.ko
-  AUTOLOAD:=$(call AutoProbe,r8152)
+  FILES:=$(PKG_BUILD_DIR)/r8152.ko
+  AUTOLOAD:=$(call AutoProbe,r8152,1)
 endef
 
 define KernelPackage/usb-net-rtl8152-vendor/description

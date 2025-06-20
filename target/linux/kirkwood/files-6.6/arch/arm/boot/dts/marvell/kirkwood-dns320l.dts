@@ -37,6 +37,16 @@
 		stdout-path = &uart0;
 	};
 
+	gpio-export {
+		compatible = "gpio-export";
+
+		mcu_power {
+			gpio-export,name = "mcu_power";
+			gpio-export,input = <0>;
+			gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
 	gpio-keys {
 		compatible = "gpio-keys";
 		#address-cells = <1>;

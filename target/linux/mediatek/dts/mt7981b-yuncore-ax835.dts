@@ -2,7 +2,7 @@
 
 /dts-v1/;
 
-#include "mt7981.dtsi"
+#include "mt7981b.dtsi"
 
 / {
 	compatible = "yuncore,ax835", "mediatek,mt7981";
@@ -35,6 +35,7 @@
 		regulator-name = "led_vbus";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
+		enable-active-high;
 		regulator-always-on;
 		gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
 	};
@@ -157,7 +158,7 @@
 			#address-cells = <1>;
 			#size-cells = <1>;
 
-			partition@00000 {
+			partition@0 {
 				label = "BL2";
 				reg = <0x00000 0x40000>;
 				read-only;
